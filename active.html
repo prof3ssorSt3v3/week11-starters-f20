@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        background-color: salmon;
+      }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        color: #ddf;
+      }
+      .page {
+        width: 100vw;
+        height: 100vh;
+        display: none;
+        padding: 2rem;
+        margin: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      .page.active {
+        display: block;
+      }
+      #home {
+        background-color: hsl(100, 50%, 20%);
+      }
+      #away {
+        background-color: hsl(200, 50%, 20%);
+      }
+      header h1 {
+        margin: 0;
+      }
+      .content {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="page" id="home">
+      <header>
+        <h1>HOME ::: SPA</h1>
+      </header>
+      <section class="content">
+        <p>
+          This is the HOME page. Click on this paragraph to do something. 🔥🔥🔥
+        </p>
+      </section>
+    </section>
+    <section class="page" id="away">
+      <header>
+        <h1>AWAY ::: SPA</h1>
+      </header>
+      <section class="content">
+        <p>
+          This is the AWAY page. Click on this paragraph to do something. 🌴🌴🌴
+        </p>
+      </section>
+    </section>
+    <script>
+      const APP = {
+        currentPage: null,
+        init() {
+          APP.currentPage = document.querySelector('.page').id;
+          //go to the currentPage
+          APP.nav();
+          //set up future nav
+          APP.addListeners();
+        },
+        nav() {
+          document.querySelectorAll('.page').forEach((page) => {
+            page.classList.remove('active');
+          });
+          document.getElementById(APP.currentPage).classList.add('active');
+        },
+        addListeners() {
+          let btn1 = document.querySelector('#home .content p');
+          btn1.addEventListener('click', APP.doHomeTask);
+          let btn2 = document.querySelector('#away .content p');
+          btn2.addEventListener('click', APP.doAwayTask);
+        },
+        doHomeTask() {
+          //some task unique to the home page
+          //then navigate to the away page.
+          APP.currentPage = 'away';
+          APP.nav();
+        },
+        doAwayTask() {
+          //some task unique to the away page
+          //then navigate to the home page.
+          APP.currentPage = 'home';
+          APP.nav();
+        },
+      };
+      document.addEventListener('DOMContentLoaded', APP.init);
+    </script>
+  </body>
+</html>
