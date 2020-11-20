@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list">
+      <li data-id="1">Data 1</li>
+      <li data-id="2">Data 2</li>
+      <li data-id="3">Data 3</li>
+      <li data-id="4">Data 4</li>
+      <li data-id="5">Data 5</li>
+    </ul>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        let idToFind = 7;
+        let data = [
+          { id: 1, name: 'bubbles' },
+          { id: 7, name: 'julien' },
+          { id: 4, name: 'ricky' },
+        ];
+        //let person = data.find(({ id }) => id === idToFind);
+        let person = data.find((obj) => {
+          if (obj.id === idToFind) {
+            return true;
+          }
+        });
+        console.log({ person });
+      });
+    </script>
+  </body>
+</html>
